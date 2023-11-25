@@ -1,8 +1,9 @@
 from tab import Tab
 import requests
-import pandas
+import pandas as pd
 
 tabs = []
+tabs_dict_list = []
 
 
 def open_tab(Title, URL):
@@ -20,7 +21,7 @@ def close_tab(index):
     except IndexError:
         print(f"index '{index}' is out of range.")
     except ValueError:
-        print(f"index should be and integer.")
+        print(f"index should be an integer.")
     else:
         print(f"The tab: {tab_title} has been removed successfully.")
 
@@ -33,7 +34,7 @@ def switch_tab(index=-1):
         try:
             index = int(input("Please specify the index of the tab you want to view:\t"))
         except ValueError:
-            print(f"index should be and integer.")
+            print(f"index should be an integer.")
             return
         except IndexError:
             print(f"index '{index}' is out of range.")
@@ -52,7 +53,11 @@ def switch_tab(index=-1):
 
 
 def display_all_tabs():
-    
+    tabs_dict = [tab.dict for tab in tabs]
+    df = pd.DataFrame(tabs_dict)
+    df.index += 1
+    print(df)
+
 
 def mainProgram():
     while True:
