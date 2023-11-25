@@ -27,6 +27,7 @@ def close_tab(index):
 
 
 def switch_tab(index=-1):
+    desired_url = tabs[index].url
     choice = input("View last tab? y/n")
     if choice == "y":
         pass
@@ -36,17 +37,17 @@ def switch_tab(index=-1):
         except ValueError:
             print(f"index should be an integer.")
             return
-        except IndexError:
-            print(f"index '{index}' is out of range.")
-            return
     try:
-        response = requests.get(tabs[index].url)
+        response = requests.get(desired_url)
+    except IndexError:
+        print(f"index '{index}' is out of range.")
+        return
     except requests.exceptions.MissingSchema:
-        print(f"The url: {tabs[index].url} is invalid."
+        print(f"The url: {desired_url} is invalid."
               f"Make sure you added a URL Scheme (ex: https://). ")
-        if input(f"Do you want to change the url : {requests.get(tabs[index].url)} y/n") == "y":
+        if input(f"Do you want to change the url : {requests.get(desired_url)} y/n") == "y":
             tabs[index].url = input(f"Enter the new url for {requests.get(tabs[index].title)}")
-            switch_tab()
+            switch_tab(index)
         return
     website_html = response.text
     print(website_html)
@@ -54,13 +55,18 @@ def switch_tab(index=-1):
 
 def display_all_tabs():
     tabs_dict = [tab.dict for tab in tabs]
+    # in case we want to print titles normally:
+    # titles = [x.get("title") for x in tabs_dict]
+    # print(titles)
     df = pd.DataFrame(tabs_dict)
     df.index += 1
     print(df)
 
 
-def open_nested_tab():
-    pass
+def open_nested_tab(indicator):
+    if indicator.isdigit():
+
+
 
 
 def mainProgram():
@@ -93,7 +99,8 @@ def mainProgram():
                 if option == 4:
                     display_all_tabs()
                 if option == 5:
-                    open_nested_tab()
+                    indicator = input("Indicate the title or index of the tab you want to open in new window:")
+                    open_nested_tab(indicator)
             else:
                 print("Choice does not exist. Try again.")
 

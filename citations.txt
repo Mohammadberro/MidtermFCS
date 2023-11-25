@@ -11,3 +11,7 @@ https://stackoverflow.com/questions/20167930/start-index-at-1-for-pandas-datafra
 5. : List Comprehension:
 https://www.udemy.com/course/100-days-of-code/
 Day 26 - Intermediate - List Comprehension
+6. : Printing object attributes:
+https://favtutor.com/blogs/print-object-attributes-python
+7. : Dealing with dictionaries.get():
+https://www.scaler.com/topics/get-in-python/

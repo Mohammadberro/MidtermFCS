@@ -6,3 +6,4 @@ class Tab:
             "title": title,
             "url": url
         }
+        self.nested_tabs = []
