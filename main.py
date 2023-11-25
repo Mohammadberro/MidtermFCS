@@ -1,5 +1,5 @@
 from tab import Tab
-
+import requests
 tabs = []
 
 
@@ -8,6 +8,7 @@ def open_tab(Title, URL):
     tabs.append(new_tab)
     print(f"Tab has been opened successfully")
     return new_tab
+
 
 def close_tab(index):
     try:
@@ -23,8 +24,9 @@ def close_tab(index):
 
 
 def switch_tab(index=-1):
-    
-
+    response = requests.get(tabs[index].URL)
+    website_html = response.text
+    print(website_html)
 
 def mainProgram():
     while True:
@@ -47,6 +49,7 @@ def mainProgram():
                 if option == 1:
                     URL = input("Enter:\nURL:\t")
                     Title = input("Title:\t").title()
+                    open_tab(Title, URL)
                 if option == 2:
                     index = input("Enter the index of the tab you wish to close:")
                     close_tab(index)
