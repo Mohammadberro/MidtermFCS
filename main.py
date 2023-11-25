@@ -1,6 +1,13 @@
 from tab import Tab
 
 
+def open_tab():
+    print("Please Enter:\n")
+    URL = input("URL:\t")
+    Title = input("Title:\t")
+    new_tab = Tab(Title, URL)
+
+
 def mainProgram():
     while True:
         print("Hello! Enter your choice:"
@@ -16,5 +23,8 @@ def mainProgram():
         option = int(input(""))
         while not option.isdigit() or not (0 < option <= 9):
             option = input("Please enter a valid option\t")
+        if option == 1:
+            open_tab()
+
 
 mainProgram()
