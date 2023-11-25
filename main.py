@@ -1,3 +1,6 @@
+from tab import Tab
+
+
 def mainProgram():
     while True:
         print("Hello! Enter your choice:"
@@ -10,9 +13,8 @@ def mainProgram():
               "\n7. Save Tabs"
               "\n8. Import Tabs"
               "\n9. Exit")
-        option = input("")
-        while not option.isdigit() or not (0 < int(option) <= 9):
+        option = int(input(""))
+        while not option.isdigit() or not (0 < option <= 9):
             option = input("Please enter a valid option\t")
-
 
 mainProgram()
