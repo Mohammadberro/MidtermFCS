@@ -6,3 +6,6 @@ class Tab:
             "title": title,
             "url": url
         }
+
+    # def tabDict(self):
+    #     return self.tabDict

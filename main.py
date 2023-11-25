@@ -3,17 +3,12 @@ from tab import Tab
 tabs = []
 
 
-def open_tab():
-    print("Enter:\n")
-    URL = input("URL:\t")
-    Title = input("Title:\t").title()
+def open_tab(Title, URL):
     new_tab = Tab(Title, URL)
     tabs.append(new_tab)
-    print(f"Tab has been added.")
 
 
-def close_tab():
-    index = int(input("Enter the index of the tab you wish to close:"))
+def close_tab(index):
     try:
         tab_title = tabs[index].title
         tabs.pop(index)
@@ -44,9 +39,12 @@ def mainProgram():
         else:
             if 0 < option <= 9:
                 if option == 1:
-                    open_tab()
+                    URL = input("Enter:\nURL:\t")
+                    Title = input("Title:\t").title()
+                    open_tab(URL, Title)
                 if option == 2:
-                    close_tab()
+                    index = int(input("Enter the index of the tab you wish to close:"))
+                    close_tab(index)
             else:
                 print("Choice does not exist. Try again.")
 
