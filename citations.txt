@@ -1,10 +1,10 @@
 Group of references that helped in this project:
-1.: converting a list of dictionaries to pandas dataframe.
+1.: Converting a list of dictionaries to pandas dataframe.
 https://saturncloud.io/blog/converting-a-list-of-dictionaries-to-a-pandas-dataframe-a-comprehensive-guide/#:~:text=Lists%20of%20dictionaries%20are%20common,using%20the%20set_index()%20function.
-2.: dealing with errors:
+2.: Dealing with errors:
 https://www.udemy.com/course/100-days-of-code/
 C:\Users\Borro\Desktop\100 Days of Code The Complete Python Pro Bootcamp for 2022\30 Day 30 - Intermediate - Errors, Exceptions and JSON Data_ Improving the Password
-3.: flattening a list of nested dicitonaries:
+3.: Flattening a list of nested dicitonaries:
 https://www.geeksforgeeks.org/python-convert-nested-dictionary-into-flattened-dictionary/
 4.: Shifting index of displaying tab to start by 1 rather than 0:
 https://stackoverflow.com/questions/20167930/start-index-at-1-for-pandas-dataframe
@@ -15,3 +15,5 @@ Day 26 - Intermediate - List Comprehension
 https://favtutor.com/blogs/print-object-attributes-python
 7. : Dealing with dictionaries.get():
 https://www.scaler.com/topics/get-in-python/
+8. : Implementing Optional Arguments:
+https://ioflood.com/blog/python-optional-arguments/#:~:text=In%20Python%2C%20you%20can%20make,'Hello%2C%20%7Bname%7D!

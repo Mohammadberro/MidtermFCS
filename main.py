@@ -88,7 +88,29 @@ def open_nested_tab(indicator):
             else:
                 print(f"There is no tab with the title {indicator}")
 
-        # if indicator in tabs
+
+def sort_all_opened_tabs(tab_list):
+    Titles = get_all_titles(tab_list)
+    boarder = 0
+    while boarder < (len(Titles) - 1):
+        minIndex = boarder
+        for i in range(boarder + 1, len(Titles)):
+            if Titles[minIndex].lower() > Titles[i].lower():
+                minIndex = i
+        temp = Titles[boarder]
+        Titles[boarder] = Titles[minIndex]
+        Titles[minIndex] = temp
+        boarder += 1
+    print(Titles)
+
+
+def get_all_titles(tab_list):
+    Titles = []
+    for tab in tab_list:
+        Titles.append(tab.title)
+        for sub_tab in tab.nested_tabs:
+            Titles.append(sub_tab.title)
+    return Titles
 
 
 def mainProgram():
@@ -124,6 +146,8 @@ def mainProgram():
                 if option == 5:
                     indicator = input("Indicate the Title or index Parent Tab:\t")
                     open_nested_tab(indicator)
+                if option == 6:
+                    sort_all_opened_tabs(tabs)
             else:
                 print("Choice is invalid. Try again.")
 
