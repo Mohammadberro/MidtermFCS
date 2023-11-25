@@ -4,11 +4,16 @@ tabs = []
 
 
 def open_tab():
-    print("Please Enter:\n")
+    print("Enter:\n")
     URL = input("URL:\t")
-    Title = input("Title:\t")
+    Title = input("Title:\t").title()
     new_tab = Tab(Title, URL)
     tabs.append(new_tab)
+
+
+def close_tab():
+    index = int(input("Enter the index of the tab you wish to close:"))
+    tabs.pop(index)
 
 
 def mainProgram():
@@ -28,6 +33,8 @@ def mainProgram():
             option = input("Please enter a valid option\t")
         if option == 1:
             open_tab()
+        if option == 2:
+            close_tab()
 
 
 mainProgram()
