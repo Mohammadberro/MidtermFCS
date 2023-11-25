@@ -6,10 +6,12 @@ tabs = []
 def open_tab(Title, URL):
     new_tab = Tab(Title, URL)
     tabs.append(new_tab)
-
+    print(f"Tab has been opened successfully")
+    return new_tab
 
 def close_tab(index):
     try:
+        index = int(index)
         tab_title = tabs[index].title
         tabs.pop(index)
     except IndexError:
@@ -17,7 +19,11 @@ def close_tab(index):
     except ValueError:
         print(f"index should be and integer.")
     else:
-        print(f"The tab: {tab_title} has been removed.")
+        print(f"The tab: {tab_title} has been removed successfully.")
+
+
+def switch_tab(index=-1):
+    
 
 
 def mainProgram():
@@ -41,10 +47,11 @@ def mainProgram():
                 if option == 1:
                     URL = input("Enter:\nURL:\t")
                     Title = input("Title:\t").title()
-                    open_tab(URL, Title)
                 if option == 2:
-                    index = int(input("Enter the index of the tab you wish to close:"))
+                    index = input("Enter the index of the tab you wish to close:")
                     close_tab(index)
+                if option == 3:
+                    switch_tab()
             else:
                 print("Choice does not exist. Try again.")
 
