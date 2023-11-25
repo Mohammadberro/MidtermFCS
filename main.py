@@ -9,16 +9,25 @@ def open_tab():
     Title = input("Title:\t").title()
     new_tab = Tab(Title, URL)
     tabs.append(new_tab)
+    print(f"Tab has been added.")
 
 
 def close_tab():
     index = int(input("Enter the index of the tab you wish to close:"))
-    tabs.pop(index)
+    try:
+        tab_title = tabs[index].title
+        tabs.pop(index)
+    except IndexError:
+        print(f"index '{index}' is out of range.")
+    except ValueError:
+        print(f"index should be and integer.")
+    else:
+        print(f"The tab: {tab_title} has been removed.")
 
 
 def mainProgram():
     while True:
-        print("Hello! Enter your choice:"
+        print("Enter your choice:"
               "\n1. Open a Tab"
               "\n2. Close a Tab"
               "\n3. Switch Tab"
@@ -28,13 +37,18 @@ def mainProgram():
               "\n7. Save Tabs"
               "\n8. Import Tabs"
               "\n9. Exit")
-        option = int(input(""))
-        while not option.isdigit() or not (0 < option <= 9):
-            option = input("Please enter a valid option\t")
-        if option == 1:
-            open_tab()
-        if option == 2:
-            close_tab()
+        try:
+            option = int(input("Choice:\t"))
+        except ValueError:
+            print("Please enter a valid option and try again")
+        else:
+            if 0 < option <= 9:
+                if option == 1:
+                    open_tab()
+                if option == 2:
+                    close_tab()
+            else:
+                print("Choice does not exist. Try again.")
 
 
 mainProgram()
