@@ -1,11 +1,14 @@
 from tab import Tab
 
+tabs = []
+
 
 def open_tab():
     print("Please Enter:\n")
     URL = input("URL:\t")
     Title = input("Title:\t")
     new_tab = Tab(Title, URL)
+    tabs.append(new_tab)
 
 
 def mainProgram():
