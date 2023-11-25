@@ -1,5 +1,6 @@
 from tab import Tab
 import requests
+
 tabs = []
 
 
@@ -24,9 +25,18 @@ def close_tab(index):
 
 
 def switch_tab(index=-1):
-    response = requests.get(tabs[index].URL)
+    try:
+        response = requests.get(tabs[index].url)
+    except requests.exceptions.MissingSchema:
+        print(f"The url: {tabs[index].url} is invalid."
+              f"Make sure you added a URL Scheme (ex: https://). ")
+        if input(f"Do you want to change the url : {requests.get(tabs[index].url)} y/n") == "y":
+            tabs[index].url = input(f"Enter the new url for {requests.get(tabs[index].title)}")
+            switch_tab()
+        return
     website_html = response.text
     print(website_html)
+
 
 def mainProgram():
     while True:
@@ -47,8 +57,8 @@ def mainProgram():
         else:
             if 0 < option <= 9:
                 if option == 1:
-                    URL = input("Enter:\nURL:\t")
                     Title = input("Title:\t").title()
+                    URL = input("Enter:\nURL:\t")
                     open_tab(Title, URL)
                 if option == 2:
                     index = input("Enter the index of the tab you wish to close:")
