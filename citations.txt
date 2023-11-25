@@ -8,3 +8,6 @@ C:\Users\Borro\Desktop\100 Days of Code The Complete Python Pro Bootcamp for 202
 https://www.geeksforgeeks.org/python-convert-nested-dictionary-into-flattened-dictionary/
 4.: Shifting index of displaying tab to start by 1 rather than 0:
 https://stackoverflow.com/questions/20167930/start-index-at-1-for-pandas-dataframe
+5. : List Comprehension:
+https://www.udemy.com/course/100-days-of-code/
+Day 26 - Intermediate - List Comprehension

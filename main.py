@@ -59,6 +59,10 @@ def display_all_tabs():
     print(df)
 
 
+def open_nested_tab():
+    pass
+
+
 def mainProgram():
     while True:
         print("Enter your choice:"
@@ -88,6 +92,8 @@ def mainProgram():
                     switch_tab()
                 if option == 4:
                     display_all_tabs()
+                if option == 5:
+                    open_nested_tab()
             else:
                 print("Choice does not exist. Try again.")
 
