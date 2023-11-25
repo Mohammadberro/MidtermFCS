@@ -1,5 +1,6 @@
 from tab import Tab
 import requests
+import pandas
 
 tabs = []
 
@@ -50,6 +51,9 @@ def switch_tab(index=-1):
     print(website_html)
 
 
+def display_all_tabs():
+    
+
 def mainProgram():
     while True:
         print("Enter your choice:"
@@ -77,6 +81,8 @@ def mainProgram():
                     close_tab(index)
                 if option == 3:
                     switch_tab()
+                if option == 4:
+                    display_all_tabs()
             else:
                 print("Choice does not exist. Try again.")
 
