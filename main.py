@@ -6,9 +6,10 @@ tabs = []
 tabs_dict_list = []
 
 
-def open_tab(Title, URL):
+def open_tab(Title, URL, Sub_tab = False):
     new_tab = Tab(Title, URL)
-    tabs.append(new_tab)
+    if not Sub_tab:
+        tabs.append(new_tab)
     print(f"Tab has been opened successfully")
     return new_tab
 
@@ -65,6 +66,8 @@ def display_all_tabs():
 
 def open_nested_tab(indicator):
     if indicator.isdigit():
+        try:
+            tabs[int(indicator)].nested_tabs.append(sub_tab)
 
 
 
@@ -88,21 +91,22 @@ def mainProgram():
         else:
             if 0 < option <= 9:
                 if option == 1:
+                    print("To add a tab, Enter:")
                     Title = input("Title:\t").title()
                     URL = input("Enter:\nURL:\t")
                     open_tab(Title, URL)
                 if option == 2:
-                    index = input("Enter the index of the tab you wish to close:")
+                    index = input("Enter the index of the tab you wish to close:\t")
                     close_tab(index)
                 if option == 3:
                     switch_tab()
                 if option == 4:
                     display_all_tabs()
                 if option == 5:
-                    indicator = input("Indicate the title or index of the tab you want to open in new window:")
+                    indicator = input("Indicate the title or index of the tab you want to open in new window:\t")
                     open_nested_tab(indicator)
             else:
-                print("Choice does not exist. Try again.")
+                print("Choice is invalid. Try again.")
 
 
 mainProgram()
