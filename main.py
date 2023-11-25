@@ -25,6 +25,18 @@ def close_tab(index):
 
 
 def switch_tab(index=-1):
+    choice = input("View last tab? y/n")
+    if choice == "y":
+        pass
+    else:
+        try:
+            index = int(input("Please specify the index of the tab you want to view:\t"))
+        except ValueError:
+            print(f"index should be and integer.")
+            return
+        except IndexError:
+            print(f"index '{index}' is out of range.")
+            return
     try:
         response = requests.get(tabs[index].url)
     except requests.exceptions.MissingSchema:
