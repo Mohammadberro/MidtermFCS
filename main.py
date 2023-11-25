@@ -6,10 +6,11 @@ tabs = []
 tabs_dict_list = []
 
 
-def open_tab(Title, URL, Sub_tab = False):
+def open_tab(Title, URL, isParent=True):
     new_tab = Tab(Title, URL)
-    if not Sub_tab:
+    if isParent:
         tabs.append(new_tab)
+        tabs_dict_list.append(new_tab)
     print(f"Tab has been opened successfully")
     return new_tab
 
@@ -65,11 +66,29 @@ def display_all_tabs():
 
 
 def open_nested_tab(indicator):
+    print("To add a nested tab, Enter:")
+    Title = input("Title:\t").title()
+    URL = input("Enter:\nURL:\t")
+    sub_tab = open_tab(Title, URL, False)
     if indicator.isdigit():
+        parent_tab = tabs[int(indicator)]
         try:
-            tabs[int(indicator)].nested_tabs.append(sub_tab)
+            parent_tab.nested_tabs.append(sub_tab)
+        except IndexError:
+            print(f"index '{indicator}' is out of range.")
+            return
+        else:
+            print(f"{sub_tab.title} has been opened inside {parent_tab.title}")
+    else:
+        for tab in tabs:
+            if tab.title == indicator:
+                tab.nested_tabs.append(sub_tab)
+                print(f"{sub_tab.title} has been opened inside {tab.title}")
+                break
+            else:
+                print(f"There is no tab with the title {indicator}")
 
-
+        # if indicator in tabs
 
 
 def mainProgram():
@@ -103,7 +122,7 @@ def mainProgram():
                 if option == 4:
                     display_all_tabs()
                 if option == 5:
-                    indicator = input("Indicate the title or index of the tab you want to open in new window:\t")
+                    indicator = input("Indicate the Title or index Parent Tab:\t")
                     open_nested_tab(indicator)
             else:
                 print("Choice is invalid. Try again.")
