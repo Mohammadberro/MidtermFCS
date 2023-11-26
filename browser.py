@@ -66,11 +66,15 @@ class Browser:
         print(website_html)
 
     def display_all_tabs(self):
+        print("\n\tTitle\t\tUrl")
         for n in range(0, len(self.tabs_dict_list)):
-            print(f"{n + 1}.\t{self.tabs_dict_list[n]['title']}")
+            print(f"{n + 1}.\t {self.tabs_dict_list[n]['title']}\t\t {self.tabs_dict_list[n]['url']}")
             if self.tabs_dict_list[n]["nested_tabs"]:
+                print(f"\n|\tnested tabs in\t{self.tabs_dict_list[n]['title']} window:\n|\t\tTitle\t\tUrl")
                 for i in range(0, len(self.tabs_dict_list[n]["nested_tabs"])):
-                    print(f"\t{n + 1}.{i + 1}\t{self.tabs_dict_list[n]['nested_tabs'][i]['title']}")
+                    print(f"|\t{n + 1}.{i + 1}\t{self.tabs_dict_list[n]['nested_tabs'][i]['title']}"
+                          f"\t\t{self.tabs_dict_list[n]['nested_tabs'][i]['url']}\n")
+        print("")
 
     def open_nested_tab(self, indicator):
         print("To add a nested tab, Enter:")
@@ -81,20 +85,22 @@ class Browser:
             parent_tab = self.tabs_dict_list[int(indicator)]
             try:
                 # parent_tab.nested_tabs.append(sub_tab)
-                parent_tab.nested_tabs_dict.append(sub_tab.dict)
+                parent_tab['nested_tabs'].append(sub_tab.dict)
             except IndexError:
                 print(f"index '{indicator}' is out of range.")
                 return
             else:
-                print(f"{sub_tab.title} has been opened inside {parent_tab['title']}")
+                print(f"{sub_tab.dict['title']} has been opened inside {parent_tab['title']}")
         else:
+            success = False
             for tab in self.tabs_dict_list:
-                if tab['title'] == indicator:
-                    tab.nested_tabs_dict.append(sub_tab.dict)
-                    print(f"{sub_tab.title} has been opened inside {tab.title}")
+                if tab['title'] == indicator.title():
+                    tab['nested_tabs'].append(sub_tab.dict)
+                    print(f"{sub_tab.title} has been opened inside {tab['title']}")
+                    success = True
                     break
-                else:
-                    print(f"There is no tab with the title {indicator}")
+            if not success:
+                print(f"There is no tab with title: {indicator}")
 
     def sort_all_opened_tabs(self):
         Titles = self.get_all_tab_titles()
@@ -114,7 +120,7 @@ class Browser:
         Titles = []
         for tab in self.tabs_dict_list:
             Titles.append(tab['title'])
-            for sub_tab in tab.nested_tabs_dict:
+            for sub_tab in tab['nested_tabs']:
                 Titles.append(sub_tab['title'])
         return Titles
 
