@@ -1,33 +1,37 @@
 from tab import Tab
+# Importing requests for web scraping.
 import requests
+# Importing json to write and read files.
 import json
 
 
+# Class Browser to handle Browsing Tasks.
 class Browser:
+    # Dictionary list to store tabs Dictionaries
     def __init__(self):
-        # self.tabs = []
         self.tabs_dict_list = []
 
+    # Opening a tab. Parent by default.
     def open_tab(self, Title, URL, isParent=True):
         new_tab = Tab(Title, URL)
-        if isParent:
-            # self.tabs.append(new_tab)
+        if isParent:    # To avoid confusion, only parent tabs will be appended to initial tabs dictionary list.
             self.tabs_dict_list.append(new_tab.dict)
             print(f"Tab has been opened successfully")
         return new_tab
 
+    # Closing a tab by Index or Title
     def close_tab(self, indicator):
         if indicator.isdigit():
             try:
                 index = int(indicator)
                 tab_title = self.tabs_dict_list[index]["title"]
-                self.tabs_dict_list.pop(index)
+                self.tabs_dict_list.pop(index)  # By the removal of dictionary, sub-tabs will be removed as well.
             except IndexError:
                 print(f"index '{indicator}' is out of range.")
             else:
                 print(f"The tab: {tab_title} has been removed successfully.")
         else:
-            success = False
+            success = False  # For feedback in case tab doesn't exist.
             for tab in self.tabs_dict_list:
                 if tab['title'] == indicator.title():
                     self.tabs_dict_list.remove(tab)
@@ -36,6 +40,7 @@ class Browser:
             if not success:
                 print(f"There is no tab with title: {indicator}")
 
+    # View tab's web source by Index or Title.
     def switch_tab(self, index=-1):
         desired_url = self.tabs_dict_list[index]["url"]
         choice = input("View last tab? y/n\t").lower()
@@ -73,26 +78,27 @@ class Browser:
         self.tabs_dict_list[index]["website_source"] = website_html
         print(website_html)
 
+    # Displaying data in sequential form.
     def display_all_tabs(self):
         print("\n\tTitle\t\tUrl")
         for n in range(0, len(self.tabs_dict_list)):
             print(f"{n + 1}.\t {self.tabs_dict_list[n]['title']}\t\t {self.tabs_dict_list[n]['url']}")
-            if self.tabs_dict_list[n]["nested_tabs"]:
+            if self.tabs_dict_list[n]["nested_tabs"]:   # To display nested tabs under parent tabs
                 print(f"\n|\tnested tabs in\t{self.tabs_dict_list[n]['title']} window:\n|\t\tTitle\t\tUrl")
                 for i in range(0, len(self.tabs_dict_list[n]["nested_tabs"])):
                     print(f"|\t{n + 1}.{i + 1}\t{self.tabs_dict_list[n]['nested_tabs'][i]['title']}"
                           f"\t\t{self.tabs_dict_list[n]['nested_tabs'][i]['url']}\n")
         print("")
 
+    # Opening nested tabs based on title or index by Stating isParent: False.
     def open_nested_tab(self, indicator):
         print("To add a nested tab, Enter:")
         Title = input("Title:\t").title()
         URL = input("Enter:\nURL:\t")
         sub_tab = self.open_tab(Title, URL, False)
-        if indicator.isdigit():
+        if indicator.isdigit():  # Determine whether the user indicated an index or a title.
             parent_tab = self.tabs_dict_list[int(indicator)]
             try:
-                # parent_tab.nested_tabs.append(sub_tab)
                 parent_tab['nested_tabs'].append(sub_tab.dict)
             except IndexError:
                 print(f"index '{indicator}' is out of range.")
@@ -110,6 +116,7 @@ class Browser:
             if not success:
                 print(f"There is no tab with title: {indicator}")
 
+    # Sorting title by alphabetical order using selection sort.
     def sort_all_opened_tabs(self):
         Titles = self.get_all_tab_titles()
         boarder = 0
@@ -124,6 +131,7 @@ class Browser:
             boarder += 1
         print("\nSorted Titles:\n", Titles)
 
+    # Getting all titles to be used in sorting method.
     def get_all_tab_titles(self):
         Titles = []
         for tab in self.tabs_dict_list:
@@ -132,10 +140,11 @@ class Browser:
                 Titles.append(sub_tab['title'])
         return Titles
 
+    # Saving dictionary list as json. Handling errors.
     def save_tabs(self, directory):
         string = json.dumps(self.tabs_dict_list)
         try:
-            with open(directory, 'w') as file:
+            with open(directory, 'w') as file:  # write mode to make sure we create a file if not found.
                 file.write(string)
                 file.close()
         except FileNotFoundError:
@@ -145,11 +154,14 @@ class Browser:
         except OSError:
             print("Invalid Directory. Please enter a valid directory and try again.")
 
+    # Importing json data as a Dictionary list. appending every tab to opened_tab_list.
     def import_tabs(self, directory):
         try:
             with open(directory, 'r') as f:
                 lines = f.read()
-                self.tabs_dict_list = json.loads(lines)
+                data = json.loads(lines)
+                for item in data:
+                    self.tabs_dict_list.append(item)  # By just appending, we preserve temporary data after loading.
                 f.close()
         except PermissionError:
             print("Directory not readable. Please Specify a Valid Directory to Read from")

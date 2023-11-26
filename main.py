@@ -1,8 +1,11 @@
+# Importing Browser from browser.py
 from browser import Browser
 
+# Creating Object Browser from Class Browser
 browser = Browser()
 
 
+# Our Main Program
 def mainProgram():
     while True:
         print("Enter your choice:"
