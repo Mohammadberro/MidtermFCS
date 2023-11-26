@@ -27,8 +27,8 @@ def mainProgram():
                     URL = input("Enter:\nURL:\t")
                     browser.open_tab(Title, URL)
                 if option == 2:
-                    index = input("Enter the index of the tab you wish to close:\t")
-                    browser.close_tab(index)
+                    indicator = input("Enter the Title or index of the tab you wish to close:\t")
+                    browser.close_tab(indicator)
                 if option == 3:
                     browser.switch_tab()
                 if option == 4:

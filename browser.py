@@ -16,17 +16,25 @@ class Browser:
             print(f"Tab has been opened successfully")
         return new_tab
 
-    def close_tab(self, index):
-        try:
-            index = int(index)
-            tab_title = self.tabs_dict_list[index]["title"]
-            self.tabs_dict_list.pop(index)
-        except IndexError:
-            print(f"index '{index}' is out of range.")
-        except ValueError:
-            print(f"index should be an integer.")
+    def close_tab(self, indicator):
+        if indicator.isdigit():
+            try:
+                index = int(indicator)
+                tab_title = self.tabs_dict_list[index]["title"]
+                self.tabs_dict_list.pop(index)
+            except IndexError:
+                print(f"index '{indicator}' is out of range.")
+            else:
+                print(f"The tab: {tab_title} has been removed successfully.")
         else:
-            print(f"The tab: {tab_title} has been removed successfully.")
+            success = False
+            for tab in self.tabs_dict_list:
+                if tab['title'] == indicator.title():
+                    self.tabs_dict_list.remove(tab)
+                    print(f"The tab: {tab['title']} has been removed successfully.")
+                    success = True
+            if not success:
+                print(f"There is no tab with title: {indicator}")
 
     def switch_tab(self, index=-1):
         desired_url = self.tabs_dict_list[index]["url"]
