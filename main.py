@@ -1,5 +1,6 @@
 from tab import Tab
 import requests
+import json
 
 tabs = []
 tabs_dict_list = []
@@ -112,6 +113,12 @@ def get_all_titles(tab_list):
     return Titles
 
 
+def save_tabs(directory):
+    string = json.dumps(tabs_dict_list)
+    with open(directory, 'w') as file:
+        file.write(string)
+
+
 def mainProgram():
     while True:
         print("Enter your choice:"
@@ -147,6 +154,12 @@ def mainProgram():
                     open_nested_tab(indicator)
                 if option == 6:
                     sort_all_opened_tabs(tabs)
+                if option == 7:
+                    directory = input("Please specify a directory to save to")
+                    save_tabs(directory)
+                if option == 8:
+                    directory = input("Please specify a directory to load from")
+                    load_tabs(directory)
             else:
                 print("Choice is invalid. Try again.")
 
