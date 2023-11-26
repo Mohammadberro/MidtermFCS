@@ -39,10 +39,10 @@ def mainProgram():
                 if option == 6:
                     browser.sort_all_opened_tabs()
                 if option == 7:
-                    directory = input("Please specify a directory to save to")
+                    directory = input("Please specify a directory to save to\t")
                     browser.save_tabs(directory)
                 if option == 8:
-                    directory = input("Please specify a directory to load from")
+                    directory = input("Please specify a directory to load from\t")
                     browser.import_tabs(directory)
                 if option == 9:
                     print("Exiting the program...")

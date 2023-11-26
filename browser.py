@@ -114,7 +114,7 @@ class Browser:
             Titles[boarder] = Titles[minIndex]
             Titles[minIndex] = temp
             boarder += 1
-        print(Titles)
+        print("\nSorted Titles:\n", Titles)
 
     def get_all_tab_titles(self):
         Titles = []
