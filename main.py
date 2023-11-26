@@ -58,10 +58,10 @@ def switch_tab(index=-1):
 
 def display_all_tabs():
     for n in range(0, len(tabs)):
-        print(f"{n+1}.\t{tabs[n].title}")
+        print(f"{n + 1}.\t{tabs[n].title}")
         if tabs[n].nested_tabs:
             for i in range(0, len(tabs[n].nested_tabs)):
-                print(f"\t{n+1}.{i+1}\t{tabs[n].nested_tabs[i].title}")
+                print(f"\t{n + 1}.{i + 1}\t{tabs[n].nested_tabs[i].title}")
 
 
 def open_nested_tab(indicator):
@@ -119,6 +119,13 @@ def save_tabs(directory):
         file.write(string)
 
 
+def import_tabs(directory):
+    with open(directory, 'r') as f:
+        lines = f.read()
+        dict_list = json.loads(lines)
+    return dict_list
+
+
 def mainProgram():
     while True:
         print("Enter your choice:"
@@ -159,7 +166,7 @@ def mainProgram():
                     save_tabs(directory)
                 if option == 8:
                     directory = input("Please specify a directory to load from")
-                    load_tabs(directory)
+                    import_tabs(directory)
             else:
                 print("Choice is invalid. Try again.")
 
