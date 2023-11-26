@@ -51,6 +51,7 @@ def switch_tab(index=-1):
             switch_tab(index)
         return
     website_html = response.text
+    tabs[index].web_source = website_html
     print(website_html)
 
 
