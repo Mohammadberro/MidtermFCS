@@ -134,10 +134,26 @@ class Browser:
 
     def save_tabs(self, directory):
         string = json.dumps(self.tabs_dict_list)
-        with open(directory, 'w') as file:
-            file.write(string)
+        try:
+            with open(directory, 'w') as file:
+                file.write(string)
+                file.close()
+        except FileNotFoundError:
+            print("File name doesn't exist. Please Specify a valid File Name to Save to.")
+        except PermissionError:
+            print("Directory not writable. Please Specify a valid Directory to Save to")
+        except OSError:
+            print("Invalid Directory. Please enter a valid directory and try again.")
 
     def import_tabs(self, directory):
-        with open(directory, 'r') as f:
-            lines = f.read()
-            self.tabs_dict_list = json.loads(lines)
+        try:
+            with open(directory, 'r') as f:
+                lines = f.read()
+                self.tabs_dict_list = json.loads(lines)
+                f.close()
+        except PermissionError:
+            print("Directory not readable. Please Specify a Valid Directory to Read from")
+        except FileNotFoundError:
+            print("File not found. Please Specify a Valid File Name to Read from.")
+        except OSError:
+            print("Invalid Directory. Please enter a valid directory and try again.")
