@@ -4,12 +4,12 @@ https://saturncloud.io/blog/converting-a-list-of-dictionaries-to-a-pandas-datafr
 2.: Dealing with errors:
 https://www.udemy.com/course/100-days-of-code/
 C:\Users\Borro\Desktop\100 Days of Code The Complete Python Pro Bootcamp for 2022\30 Day 30 - Intermediate - Errors, Exceptions and JSON Data_ Improving the Password
-5. : List Comprehension:
+3. : List Comprehension:
 https://www.udemy.com/course/100-days-of-code/
 Day 26 - Intermediate - List Comprehension
-6. : Printing object attributes:
+4. : Printing object attributes:
 https://favtutor.com/blogs/print-object-attributes-python
-7. : Dealing with dictionaries.get():
+5. : Dealing with dictionaries.get():
 https://www.scaler.com/topics/get-in-python/
-8. : Implementing Optional Arguments:
+6. : Implementing Optional Arguments:
 https://ioflood.com/blog/python-optional-arguments/#:~:text=In%20Python%2C%20you%20can%20make,'Hello%2C%20%7Bname%7D!
