@@ -4,10 +4,6 @@ https://saturncloud.io/blog/converting-a-list-of-dictionaries-to-a-pandas-datafr
 2.: Dealing with errors:
 https://www.udemy.com/course/100-days-of-code/
 C:\Users\Borro\Desktop\100 Days of Code The Complete Python Pro Bootcamp for 2022\30 Day 30 - Intermediate - Errors, Exceptions and JSON Data_ Improving the Password
-3.: Flattening a list of nested dicitonaries:
-https://www.geeksforgeeks.org/python-convert-nested-dictionary-into-flattened-dictionary/
-4.: Shifting index of displaying tab to start by 1 rather than 0:
-https://stackoverflow.com/questions/20167930/start-index-at-1-for-pandas-dataframe
 5. : List Comprehension:
 https://www.udemy.com/course/100-days-of-code/
 Day 26 - Intermediate - List Comprehension

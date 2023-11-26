@@ -3,8 +3,9 @@ class Tab:
         self.title = title
         self.url = url
         self.nested_tabs = []
+        self.nested_tabs_dict = []
         self.dict = {
             "title": title,
             "url": url,
-            "nested_tabs": self.nested_tabs,
+            "nested_tabs": self.nested_tabs_dict
         }

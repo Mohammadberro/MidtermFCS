@@ -1,6 +1,5 @@
 from tab import Tab
 import requests
-import pandas as pd
 
 tabs = []
 tabs_dict_list = []
@@ -56,13 +55,11 @@ def switch_tab(index=-1):
 
 
 def display_all_tabs():
-    tabs_dict = [tab.dict for tab in tabs]
-    # in case we want to print titles normally:
-    # titles = [x.get("title") for x in tabs_dict]
-    # print(titles)
-    df = pd.DataFrame(tabs_dict)
-    df.index += 1
-    print(df)
+    for n in range(0, len(tabs)):
+        print(f"{n+1}.\t{tabs[n].title}")
+        if tabs[n].nested_tabs:
+            for i in range(0, len(tabs[n].nested_tabs)):
+                print(f"\t{n+1}.{i+1}\t{tabs[n].nested_tabs[i].title}")
 
 
 def open_nested_tab(indicator):
@@ -74,6 +71,7 @@ def open_nested_tab(indicator):
         parent_tab = tabs[int(indicator)]
         try:
             parent_tab.nested_tabs.append(sub_tab)
+            parent_tab.nested_tabs_dict.append(sub_tab.dict)
         except IndexError:
             print(f"index '{indicator}' is out of range.")
             return
